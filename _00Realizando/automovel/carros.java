@@ -1,4 +1,4 @@
-package automóvel;
+package automovel;
 
 import java.util.Scanner;
 

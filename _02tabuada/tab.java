@@ -1,4 +1,4 @@
-package tabuada;
+package _02tabuada;
 
 import java.util.Scanner;
 
