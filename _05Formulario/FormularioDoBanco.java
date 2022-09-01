@@ -22,11 +22,6 @@ public class FormularioDoBanco extends JFrame {
     private JLabel logoLabel;
     private JButton gerarTabelaButton;
 
-    //
-    String telDoUsuario = nomeInput.getText(), cpdDoUsuario = cpfInput.getText();
-    String nomeUsuario = nomeInput.getText(), emailUsuario = emailInput.getText(), enderecoUsuario = enderecoInput.getText();
-    //protected int telefoneUsuario = Integer.valueOf(telDoUsuario), cpfUsuario = Integer.valueOf(cpdDoUsuario);
-
         //Atributo referenciador da classe NovaTabela
     NovaTabela tabelin;
 
@@ -62,12 +57,11 @@ public class FormularioDoBanco extends JFrame {
                 if(tabelin == null) {
 
                     tabelin = new NovaTabela();
-                    tabelin.setDadosUsuarios(nomeUsuario, emailUsuario, enderecoUsuario, telDoUsuario, cpdDoUsuario);
+                    tabelin.modeloTabela.addRow(new Object[]{nomeInput.getText(), emailInput.getText(), enderecoInput.getText(), telefoneInput.getText(), cpfInput.getText()});
 
-                } else {
-                    tabelin.setDadosUsuarios(nomeUsuario, emailUsuario, enderecoUsuario, telDoUsuario, cpdDoUsuario);
+                } else { //se já foi instanciado faz a ação direta
+                    tabelin.modeloTabela.addRow(new Object[]{nomeInput.getText(), emailInput.getText(), enderecoInput.getText(), telefoneInput.getText(), cpfInput.getText()});
                 }
-
 
             }
         });
