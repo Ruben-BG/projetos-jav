@@ -30,6 +30,4 @@ public class TabelaDeDados extends Usuarios {
 
     }
 
-    public Object[] fafas;
-
 }
