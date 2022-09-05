@@ -13,11 +13,13 @@ public class FormularioDeClientes extends JFrame {
     private JTextField enderecoTextField;
     private JTextField telefoneTextField;
     private JTextField cpfTextField;
-    private JButton cadastrarButton;
+    private JButton atualizarButton;
     private JLabel emailLabel;
     private JLabel enderecoLabel;
     private JLabel telefoneLabel;
     private JLabel cpfLabel;
+    private JButton excluirButton;
+    private JButton alterarButton;
 
     //ATRIBUTO DA TABELA
     protected TabelaDeDados novaTabela;
@@ -34,21 +36,59 @@ public class FormularioDeClientes extends JFrame {
         pack();
         setVisible(true);
 
-        //ação do botão "cadastrar"
-        cadastrarButton.addActionListener(new ActionListener() {
+        //ação do botão "atualizar"
+        atualizarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if (novaTabela == null) {
+                if(novaTabela == null){novaTabela = new TabelaDeDados();}
+                novaTabela.setNomeUsuario(nomeTextField.getText());
+                novaTabela.setEmailUsuario(emailTextField.getText());
+                novaTabela.setEnderecoUsuario(enderecoTextField.getText());
+                novaTabela.setTelDoUsuario(Integer.parseInt(telefoneTextField.getText()));
+                novaTabela.setCpfDoUsuario(Integer.parseInt(cpfTextField.getText()));
 
+                //ADIÇÃO DOS VALORES NO TABLEMODEL
+                novaTabela.tableModel.addRow(novaTabela);
+
+            }
+        });
+
+        //ação do botão "excluir"
+        excluirButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(novaTabela == null) {
                     novaTabela = new TabelaDeDados();
+                }
 
-                } else {
+                if(novaTabela.tabelaPrincipal.getSelectedRow() != 1) { //-1 é quando ela não está selecionada
+                    novaTabela.tableModel.removeRow(novaTabela.tabelaPrincipal.getSelectedRow());
+                }
+
+            }
+        });
+
+        //ação do botão "alterar"
+        alterarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                if(novaTabela.tabelaPrincipal.getSelectedRow() != - 1) {
+
+                    novaTabela.tableModel.setValueAt(nomeTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 0);
+                    novaTabela.tableModel.setValueAt(emailTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 1);
+                    novaTabela.tableModel.setValueAt(enderecoTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 2);
+                    novaTabela.tableModel.setValueAt(telefoneTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 3);
+                    novaTabela.tableModel.setValueAt(cpfTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 4);
 
                 }
 
             }
         });
+
+
     }
 
     //MÉTODO PRINCIPAL

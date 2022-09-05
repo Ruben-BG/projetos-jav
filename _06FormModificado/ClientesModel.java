@@ -34,9 +34,43 @@ public class ClientesModel extends AbstractTableModel {
         return null;
     }
 
+    @Override
+    public void setValueAt(Object valor, int linha, int coluna) {
+
+        Usuarios tabelaDados = new TabelaDeDados();
+
+        switch (coluna) {
+            case 0: tabelaDados.setNomeUsuario(valor.toString()); break;
+            case 1: tabelaDados.setEmailUsuario(valor.toString()); break;
+            case 2: tabelaDados.setEnderecoUsuario(valor.toString()); break;
+            case 3: tabelaDados.setTelDoUsuario(Integer.parseInt(valor.toString())); break;
+            case 4: tabelaDados.setCpfDoUsuario(Integer.parseInt(valor.toString())); break;
+            default: System.err.println("Índice da coluna inválido");
+        }
+        super.fireTableCellUpdated(linha, coluna);
+    }
+
     //IMPLEMENTAÇÃO QUE IDENTIFICA AS COLUNAS
     @Override
     public String getColumnName(int column) {
         return colunas[column];
     }
+
+    //MÉTODO DE ADIÇÃO DE LINHA
+    public void addRow(TabelaDeDados novaLinha) {
+
+        this.usuarios.add(novaLinha);
+
+        //EVENTO RESPONSÁVEL POR ATUALIZAR UMA TABELA QUANDO ESTA TEM ALTERAÇÃO
+        this.fireTableDataChanged();//<- quando tem alteração ele atualiza a tabela
+    }
+
+    //MÉTODO DE REMOÇÃO
+    public void removeRow(int linhaSelecionada) {
+
+        this.usuarios.remove(linhaSelecionada);
+        this.fireTableRowsDeleted(linhaSelecionada, linhaSelecionada); //<-função específica para deletar dados
+
+    }
+
 }

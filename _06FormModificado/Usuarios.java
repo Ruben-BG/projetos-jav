@@ -4,7 +4,7 @@ public class Usuarios {
 
     //ATRIBUTOS DO USUARIO
     protected String nomeUsuario, emailUsuario, enderecoUsuario;
-    protected double telUsuario, cpfUsuario;
+    protected int telUsuario, cpfUsuario;
 
     //SETTERS DO USUARIO
     public void setNomeUsuario(String nomeUsuario) {
@@ -19,11 +19,11 @@ public class Usuarios {
         this.enderecoUsuario = enderecoUsuario;
     }
 
-    public void setTelUsuario(double telUsuario) {
+    public void setTelDoUsuario(int telUsuario) {
         this.telUsuario = telUsuario;
     }
 
-    public void setCpfUsuario(double cpfUsuario) {
+    public void setCpfDoUsuario(int cpfUsuario) {
         this.cpfUsuario = cpfUsuario;
     }
 
@@ -40,11 +40,11 @@ public class Usuarios {
         return enderecoUsuario;
     }
 
-    public double getTelUsuario() {
+    public int getTelDoUsuario() {
         return telUsuario;
     }
 
-    public double getCpfUsuario() {
+    public int getCpfDoUsuario() {
         return cpfUsuario;
     }
 

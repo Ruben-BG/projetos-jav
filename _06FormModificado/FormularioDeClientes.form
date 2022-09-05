@@ -2,7 +2,7 @@
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="_06FormModificado.FormularioDeClientes">
   <grid id="27dc6" binding="formularioPanel" layout-manager="GridBagLayout">
     <constraints>
-      <xy x="20" y="20" width="618" height="403"/>
+      <xy x="20" y="20" width="618" height="434"/>
     </constraints>
     <properties>
       <background color="-855310"/>
@@ -134,23 +134,49 @@
           <background color="-855310"/>
         </properties>
       </component>
-      <component id="41ede" class="javax.swing.JButton" binding="cadastrarButton" default-binding="true">
-        <constraints>
-          <grid row="7" column="7" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-          <gridbag weightx="0.0" weighty="0.0"/>
-        </constraints>
-        <properties>
-          <font name="Roboto Light"/>
-          <hideActionText value="true"/>
-          <text value="Cadastrar"/>
-        </properties>
-      </component>
       <vspacer id="c18af">
         <constraints>
           <grid row="1" column="7" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
           <gridbag weightx="0.0" weighty="0.0"/>
         </constraints>
       </vspacer>
+      <grid id="1d823" layout-manager="GridLayoutManager" row-count="1" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="7" column="7" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <gridbag weightx="0.0" weighty="0.0"/>
+        </constraints>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="41ede" class="javax.swing.JButton" binding="atualizarButton">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <font name="Roboto Light"/>
+              <hideActionText value="true"/>
+              <text value="Salvar"/>
+            </properties>
+          </component>
+          <component id="6d513" class="javax.swing.JButton" binding="excluirButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Excluir"/>
+            </properties>
+          </component>
+          <component id="fd38c" class="javax.swing.JButton" binding="alterarButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="Alterar"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
     </children>
   </grid>
 </form>
