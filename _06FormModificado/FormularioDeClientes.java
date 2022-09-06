@@ -42,14 +42,16 @@ public class FormularioDeClientes extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if(novaTabela == null){novaTabela = new TabelaDeDados();}
-                novaTabela.setNomeUsuario(nomeTextField.getText());
-                novaTabela.setEmailUsuario(emailTextField.getText());
-                novaTabela.setEnderecoUsuario(enderecoTextField.getText());
-                novaTabela.setTelDoUsuario(Integer.parseInt(telefoneTextField.getText()));
-                novaTabela.setCpfDoUsuario(Integer.parseInt(cpfTextField.getText()));
+                Usuarios novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
+
+                novoUsuario.setNomeUsuario(nomeTextField.getText());
+                novoUsuario.setEmailUsuario(emailTextField.getText());
+                novoUsuario.setEnderecoUsuario(enderecoTextField.getText());
+                novoUsuario.setTelDoUsuario(Long.parseLong(telefoneTextField.getText()));
+                novoUsuario.setCpfDoUsuario(Long.parseLong(cpfTextField.getText()));
 
                 //ADIÇÃO DOS VALORES NO TABLEMODEL
-                novaTabela.tableModel.addRow(novaTabela);
+                novaTabela.tableModel.addRow(novoUsuario);
 
             }
         });
@@ -58,15 +60,9 @@ public class FormularioDeClientes extends JFrame {
         excluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                if(novaTabela == null) {
-                    novaTabela = new TabelaDeDados();
-                }
-
                 if(novaTabela.tabelaPrincipal.getSelectedRow() != 1) { //-1 é quando ela não está selecionada
                     novaTabela.tableModel.removeRow(novaTabela.tabelaPrincipal.getSelectedRow());
                 }
-
             }
         });
 
@@ -76,7 +72,7 @@ public class FormularioDeClientes extends JFrame {
             public void actionPerformed(ActionEvent e) {
 
                 if(novaTabela.tabelaPrincipal.getSelectedRow() != - 1) {
-
+                    //A introdução de dados se deu pela sequência valorObjeto, linhaSelecionada e coluna
                     novaTabela.tableModel.setValueAt(nomeTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 0);
                     novaTabela.tableModel.setValueAt(emailTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 1);
                     novaTabela.tableModel.setValueAt(enderecoTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 2);

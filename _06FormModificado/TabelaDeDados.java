@@ -12,11 +12,11 @@ public class TabelaDeDados extends Usuarios {
     public JTable tabelaPrincipal;
     protected JScrollPane barraRolagem;
 
+
     //CONSTRUTOR DA TABELA
     public TabelaDeDados() {
 
         tabelaFrame = new JFrame("Tabela");
-        tabelaFrame.setLayout(new GridLayout());
         tabelaPanel = new JPanel();
         tabelaFrame.setContentPane(tabelaPanel);
         tabelaPrincipal = new JTable(tableModel);
@@ -29,7 +29,5 @@ public class TabelaDeDados extends Usuarios {
         tabelaFrame.setVisible(true);
 
     }
-
-    public Object[] fafas;
 
 }
