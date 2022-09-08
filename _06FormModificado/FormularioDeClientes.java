@@ -41,17 +41,36 @@ public class FormularioDeClientes extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                if(novaTabela == null){novaTabela = new TabelaDeDados();}
                 Usuarios novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
+                boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
+                boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
+                popUp gerarAviso; //<- cria um objeto da classe gerar aviso
 
-                novoUsuario.setNomeUsuario(nomeTextField.getText());
-                novoUsuario.setEmailUsuario(emailTextField.getText());
-                novoUsuario.setEnderecoUsuario(enderecoTextField.getText());
-                novoUsuario.setTelDoUsuario(Long.parseLong(telefoneTextField.getText()));
-                novoUsuario.setCpfDoUsuario(Long.parseLong(cpfTextField.getText()));
+                if(!telefoneNum && !cpfNum) {
+                    gerarAviso = new popUp();
+                    gerarAviso.telECpfErrado();
+                } else if(!telefoneNum) { //se o campo telefone estiver com algo além de número
+                    gerarAviso = new popUp();
+                    gerarAviso.telefoneErrado();
+                } else if(!cpfNum) {
+                    gerarAviso = new popUp();
+                    gerarAviso.cpfErrado();
+                } else if(telefoneNum == true && cpfNum == true && novaTabela == null) {
 
-                //ADIÇÃO DOS VALORES NO TABLEMODEL
-                novaTabela.tableModel.addRow(novoUsuario);
+                    novaTabela = new TabelaDeDados();
+
+                } else {
+
+                    novoUsuario.setNomeUsuario(nomeTextField.getText());
+                    novoUsuario.setEmailUsuario(emailTextField.getText());
+                    novoUsuario.setEnderecoUsuario(enderecoTextField.getText());
+                    novoUsuario.setTelDoUsuario(Long.parseLong(telefoneTextField.getText()));
+                    novoUsuario.setCpfDoUsuario(Long.parseLong(cpfTextField.getText()));
+
+                    //ADIÇÃO DOS VALORES NO TABLEMODEL
+                    novaTabela.tableModel.addRow(novoUsuario);
+
+                }
 
             }
         });
