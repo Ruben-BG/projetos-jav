@@ -44,9 +44,13 @@ public class FormularioDeClientes extends JFrame {
                 Usuarios novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
                 boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
                 boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
+                boolean emailCorreto = emailTextField.getText().contains("@"); //método de verificação se tem ou não @ no campo
                 popUp gerarAviso; //<- cria um objeto da classe gerar aviso
 
-                if(!telefoneNum && !cpfNum) {
+                if(!emailCorreto) {
+                    gerarAviso = new popUp();
+                    gerarAviso.emailIncorreto();
+                } else if(!telefoneNum && !cpfNum) {
                     gerarAviso = new popUp();
                     gerarAviso.telECpfErrado();
                 } else if(!telefoneNum) { //se o campo telefone estiver com algo além de número
@@ -69,6 +73,13 @@ public class FormularioDeClientes extends JFrame {
 
                     //ADIÇÃO DOS VALORES NO TABLEMODEL
                     novaTabela.tableModel.addRow(novoUsuario);
+
+                    //LIMPA CAMPO APÓS ADICIONAR USUÁRIO
+                    nomeTextField.setText("");
+                    emailTextField.setText("");
+                    enderecoTextField.setText("");
+                    telefoneTextField.setText("");
+                    cpfTextField.setText("");
 
                 }
 
@@ -97,6 +108,13 @@ public class FormularioDeClientes extends JFrame {
                     novaTabela.tableModel.setValueAt(enderecoTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 2);
                     novaTabela.tableModel.setValueAt(telefoneTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 3);
                     novaTabela.tableModel.setValueAt(cpfTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 4);
+
+                    //LIMPA CAMPO APÓS ALTERAR LINHA
+                    nomeTextField.setText("");
+                    emailTextField.setText("");
+                    enderecoTextField.setText("");
+                    telefoneTextField.setText("");
+                    cpfTextField.setText("");
 
                 }
 

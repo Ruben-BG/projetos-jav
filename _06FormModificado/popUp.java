@@ -21,18 +21,28 @@ public class popUp extends JFrame {
 
     }
 
+    //MÉTODO PARA EMAIL INCORRETO
+    public void emailIncorreto() {
+        mensagem.setText("Por favor insira o caractere especial '@' no campo de email");
+        pack();
+        setVisible(true);
+    }
+
+    //MÉTODO PARA TELEFONE INCORRETO
     public void telefoneErrado() {
         mensagem.setText("O valor atribuído ao campo de telefone deve ser numérico.");
         pack();
         setVisible(true);
     }
 
+    //MÉTODO PARA CPF INCORRETO
     public void cpfErrado() {
         mensagem.setText("O valor atribuído ao campo de cpf deve ser numérico.");
         pack();
         setVisible(true);
     }
 
+    //MÉTODO PARA TELEFONE E CPF INCORRETOS
     public void telECpfErrado() {
         mensagem.setText("Os valores atribuídos aos campos de telefone e CPF devem ser apenas numéricos.");
         pack();
