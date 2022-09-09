@@ -2,6 +2,7 @@ package _06FormModificado;
 
 import javax.sql.RowSet;
 import javax.swing.table.AbstractTableModel;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -73,6 +74,26 @@ public class ClientesModel extends AbstractTableModel {
 
         this.usuarios.remove(linhaSelecionada);
         this.fireTableRowsDeleted(linhaSelecionada, linhaSelecionada); //<-função específica para deletar dados
+
+    }
+
+    public Object[] cliqueDoMouse(MouseEvent e) {
+
+        Object[] componenteColuna = new Object[4];
+        FormularioDeClientes referenciaFormulario = new FormularioDeClientes();
+
+        if(e.getClickCount() == 2) {
+
+            componenteColuna[0] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 0);
+            componenteColuna[1] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 1);
+            componenteColuna[2] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 2);
+            componenteColuna[3] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 3);
+            componenteColuna[4] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 4);
+            return componenteColuna;
+
+        } else {
+            return null;
+        }
 
     }
 

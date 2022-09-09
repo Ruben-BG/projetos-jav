@@ -3,14 +3,14 @@ package _06FormModificado;
 import javax.swing.*;
 import java.awt.*;
 
-public class popUp extends JFrame {
+public class PopUp extends JFrame {
 
     JFrame frameDoAviso;
     JPanel painelAviso;
     JLabel mensagem = new JLabel();
 
     //CONSTRUTOR DA ABA DE POP-UP
-    public popUp() {
+    public PopUp() {
 
         frameDoAviso = new JFrame("Atenção");
         setSize(200, 200);

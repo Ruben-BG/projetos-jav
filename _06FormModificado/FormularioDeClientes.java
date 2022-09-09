@@ -1,14 +1,15 @@
 package _06FormModificado;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.event.*;
 
 public class FormularioDeClientes extends JFrame {
     private JPanel formularioPanel;
     private JLabel logoLabel;
     private JLabel nomeLabel;
-    private JTextField nomeTextField;
+    public JTextField nomeTextField;
     private JTextField emailTextField;
     private JTextField enderecoTextField;
     private JTextField telefoneTextField;
@@ -21,12 +22,33 @@ public class FormularioDeClientes extends JFrame {
     private JButton excluirButton;
     private JButton alterarButton;
 
-    //ATRIBUTO DA TABELA
-    protected TabelaDeDados novaTabela;
+    //ATRIBUTO DA TABELA E DO FORMULÁRIO
+    public TabelaDeDados novaTabela;
+    public Usuarios novoUsuario;
+
+    //MÉTODOS GERAIS
+    public void definicaoDados() {
+
+        novoUsuario.setNomeUsuario(nomeTextField.getText());
+        novoUsuario.setEmailUsuario(emailTextField.getText());
+        novoUsuario.setEnderecoUsuario(enderecoTextField.getText());
+        novoUsuario.setTelDoUsuario(Long.parseLong(telefoneTextField.getText()));
+        novoUsuario.setCpfDoUsuario(Long.parseLong(cpfTextField.getText()));
+
+    }
+
+    public void limpaCampo() {
+
+        nomeTextField.setText("");
+        emailTextField.setText("");
+        enderecoTextField.setText("");
+        telefoneTextField.setText("");
+        cpfTextField.setText("");
+
+    }
 
     //CONSTRUTOR
     public FormularioDeClientes() {
-
         //introdução do JFrame
         setTitle("Cadastro de usuários");
         setContentPane(formularioPanel);
@@ -41,45 +63,37 @@ public class FormularioDeClientes extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                Usuarios novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
+                novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
                 boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
                 boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
                 boolean emailCorreto = emailTextField.getText().contains("@"); //método de verificação se tem ou não @ no campo
-                popUp gerarAviso; //<- cria um objeto da classe gerar aviso
+                PopUp gerarAviso; //<- cria um objeto da classe gerar aviso
 
                 if(!emailCorreto) {
-                    gerarAviso = new popUp();
+                    gerarAviso = new PopUp();
                     gerarAviso.emailIncorreto();
                 } else if(!telefoneNum && !cpfNum) {
-                    gerarAviso = new popUp();
+                    gerarAviso = new PopUp();
                     gerarAviso.telECpfErrado();
                 } else if(!telefoneNum) { //se o campo telefone estiver com algo além de número
-                    gerarAviso = new popUp();
+                    gerarAviso = new PopUp();
                     gerarAviso.telefoneErrado();
                 } else if(!cpfNum) {
-                    gerarAviso = new popUp();
+                    gerarAviso = new PopUp();
                     gerarAviso.cpfErrado();
                 } else if(telefoneNum == true && cpfNum == true && novaTabela == null) {
 
                     novaTabela = new TabelaDeDados();
+                    definicaoDados();
+                    novaTabela.tableModel.addRow(novoUsuario);
+                    limpaCampo();
 
                 } else {
 
-                    novoUsuario.setNomeUsuario(nomeTextField.getText());
-                    novoUsuario.setEmailUsuario(emailTextField.getText());
-                    novoUsuario.setEnderecoUsuario(enderecoTextField.getText());
-                    novoUsuario.setTelDoUsuario(Long.parseLong(telefoneTextField.getText()));
-                    novoUsuario.setCpfDoUsuario(Long.parseLong(cpfTextField.getText()));
-
+                    definicaoDados();
                     //ADIÇÃO DOS VALORES NO TABLEMODEL
                     novaTabela.tableModel.addRow(novoUsuario);
-
-                    //LIMPA CAMPO APÓS ADICIONAR USUÁRIO
-                    nomeTextField.setText("");
-                    emailTextField.setText("");
-                    enderecoTextField.setText("");
-                    telefoneTextField.setText("");
-                    cpfTextField.setText("");
+                    limpaCampo();
 
                 }
 
@@ -109,25 +123,17 @@ public class FormularioDeClientes extends JFrame {
                     novaTabela.tableModel.setValueAt(telefoneTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 3);
                     novaTabela.tableModel.setValueAt(cpfTextField.getText(), novaTabela.tabelaPrincipal.getSelectedRow(), 4);
 
-                    //LIMPA CAMPO APÓS ALTERAR LINHA
-                    nomeTextField.setText("");
-                    emailTextField.setText("");
-                    enderecoTextField.setText("");
-                    telefoneTextField.setText("");
-                    cpfTextField.setText("");
-
+                    limpaCampo();
                 }
-
             }
         });
-
 
     }
 
     //MÉTODO PRINCIPAL
     public static void main(String[] args) {
 
-        FormularioDeClientes novoForm = new FormularioDeClientes();
+        FormularioDeClientes novaFrame = new FormularioDeClientes();
 
     }
 

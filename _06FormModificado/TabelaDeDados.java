@@ -1,7 +1,8 @@
 package _06FormModificado;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TabelaDeDados extends Usuarios {
 
@@ -11,6 +12,7 @@ public class TabelaDeDados extends Usuarios {
     protected ClientesModel tableModel = new ClientesModel();
     public JTable tabelaPrincipal;
     protected JScrollPane barraRolagem;
+    protected FormularioDeClientes referenciaFormulario;
 
 
     //CONSTRUTOR DA TABELA
@@ -27,6 +29,23 @@ public class TabelaDeDados extends Usuarios {
         tabelaFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         tabelaFrame.pack();
         tabelaFrame.setVisible(true);
+
+        tabelaPrincipal.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                if(e.getClickCount() == 2) {
+
+                    if(referenciaFormulario == null) {
+                        referenciaFormulario = new FormularioDeClientes();
+                    } else {
+                        referenciaFormulario.nomeTextField.setText(tableModel.usuarios.get(tabelaPrincipal.getSelectedRow()).getNomeUsuario());
+                    }
+
+                }
+
+            }
+        });
 
     }
 
