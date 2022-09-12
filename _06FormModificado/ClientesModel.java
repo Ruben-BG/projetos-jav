@@ -1,16 +1,13 @@
 package _06FormModificado;
 
-import javax.sql.RowSet;
 import javax.swing.table.AbstractTableModel;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Vector;
 
 public class ClientesModel extends AbstractTableModel {
     //ATRIBUTOS TABLE MODEL
-    protected List<Usuarios> usuarios = new ArrayList<>();
+    protected List<Usuario> usuarios = new ArrayList<>();
     protected String[] colunas = {"Nome", "Email", "Endereço", "Telefone", "CPF"};
 
     //RETORNA A QUANTIDADE DE LINHAS DO MODELO
@@ -42,7 +39,7 @@ public class ClientesModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
 
-        Usuarios tabelaDados = usuarios.get(linha);
+        Usuario tabelaDados = usuarios.get(linha);
 
         switch (coluna) {
             case 0: tabelaDados.setNomeUsuario(valor.toString()); break;
@@ -62,7 +59,7 @@ public class ClientesModel extends AbstractTableModel {
     }
 
     //MÉTODO DE ADIÇÃO DE LINHA
-    public void addRow(Usuarios novaLinha) {
+    public void addRow(Usuario novaLinha) {
 
         this.usuarios.add(novaLinha);
         //EVENTO RESPONSÁVEL POR ATUALIZAR UMA TABELA QUANDO ESTA TEM ALTERAÇÃO
@@ -74,26 +71,6 @@ public class ClientesModel extends AbstractTableModel {
 
         this.usuarios.remove(linhaSelecionada);
         this.fireTableRowsDeleted(linhaSelecionada, linhaSelecionada); //<-função específica para deletar dados
-
-    }
-
-    public Object[] cliqueDoMouse(MouseEvent e) {
-
-        Object[] componenteColuna = new Object[4];
-        FormularioDeClientes referenciaFormulario = new FormularioDeClientes();
-
-        if(e.getClickCount() == 2) {
-
-            componenteColuna[0] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 0);
-            componenteColuna[1] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 1);
-            componenteColuna[2] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 2);
-            componenteColuna[3] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 3);
-            componenteColuna[4] = getValueAt(referenciaFormulario.novaTabela.tabelaPrincipal.getSelectedRow(), 4);
-            return componenteColuna;
-
-        } else {
-            return null;
-        }
 
     }
 

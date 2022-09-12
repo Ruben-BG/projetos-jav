@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class TabelaDeDados extends Usuarios {
+public class TabelaDeDados extends Usuario {
 
     //ATRIBUTOS DA TABELA
     private JFrame tabelaFrame;
@@ -16,7 +16,7 @@ public class TabelaDeDados extends Usuarios {
 
 
     //CONSTRUTOR DA TABELA
-    public TabelaDeDados() {
+    public TabelaDeDados(FormularioDeClientes formularioDeClientes) {
 
         tabelaFrame = new JFrame("Tabela");
         tabelaPanel = new JPanel();
@@ -36,10 +36,11 @@ public class TabelaDeDados extends Usuarios {
 
                 if(e.getClickCount() == 2) {
 
-                    if(referenciaFormulario == null) {
+                    if(formularioDeClientes == null) {
                         referenciaFormulario = new FormularioDeClientes();
                     } else {
-                        referenciaFormulario.nomeTextField.setText(tableModel.usuarios.get(tabelaPrincipal.getSelectedRow()).getNomeUsuario());
+                        Usuario usuario = tableModel.usuarios.get(tabelaPrincipal.getSelectedRow());
+                        formularioDeClientes.atualizaFormulario(usuario);
                     }
 
                 }

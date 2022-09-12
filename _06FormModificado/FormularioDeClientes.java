@@ -1,8 +1,6 @@
 package _06FormModificado;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.event.*;
 
 public class FormularioDeClientes extends JFrame {
@@ -24,7 +22,8 @@ public class FormularioDeClientes extends JFrame {
 
     //ATRIBUTO DA TABELA E DO FORMULÁRIO
     public TabelaDeDados novaTabela;
-    public Usuarios novoUsuario;
+    public Usuario novoUsuario;
+    public FormularioDeClientes esseFormulario = this;
 
     //MÉTODOS GERAIS
     public void definicaoDados() {
@@ -47,6 +46,16 @@ public class FormularioDeClientes extends JFrame {
 
     }
 
+    public void atualizaFormulario(Usuario usuario) {
+
+        nomeTextField.setText(usuario.getNomeUsuario());
+        emailTextField.setText(usuario.getEmailUsuario());
+        enderecoTextField.setText(usuario.getEnderecoUsuario());
+        telefoneTextField.setText(String.valueOf(usuario.getTelDoUsuario()));
+        cpfTextField.setText(String.valueOf(usuario.getCpfDoUsuario()));
+
+    }
+
     //CONSTRUTOR
     public FormularioDeClientes() {
         //introdução do JFrame
@@ -63,7 +72,7 @@ public class FormularioDeClientes extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                novoUsuario = new Usuarios(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
+                novoUsuario = new Usuario(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
                 boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
                 boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
                 boolean emailCorreto = emailTextField.getText().contains("@"); //método de verificação se tem ou não @ no campo
@@ -81,17 +90,12 @@ public class FormularioDeClientes extends JFrame {
                 } else if(!cpfNum) {
                     gerarAviso = new PopUp();
                     gerarAviso.cpfErrado();
-                } else if(telefoneNum == true && cpfNum == true && novaTabela == null) {
-
-                    novaTabela = new TabelaDeDados();
-                    definicaoDados();
-                    novaTabela.tableModel.addRow(novoUsuario);
-                    limpaCampo();
-
                 } else {
 
+                    if(novaTabela == null)
+                        novaTabela = new TabelaDeDados(esseFormulario);
+
                     definicaoDados();
-                    //ADIÇÃO DOS VALORES NO TABLEMODEL
                     novaTabela.tableModel.addRow(novoUsuario);
                     limpaCampo();
 

@@ -1,6 +1,6 @@
 package _06FormModificado;
 
-public class Usuarios {
+public class Usuario {//NOME DEVE SER SINGULAR, PLURAL VEM APENAS EM CLASSE DE LIST
 
     //ATRIBUTOS DO USUARIO
     protected String nomeUsuario, emailUsuario, enderecoUsuario;
