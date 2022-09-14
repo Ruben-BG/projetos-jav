@@ -17,11 +17,10 @@ public class FormularioDeClientes extends JFrame {
     private JLabel enderecoLabel;
     private JLabel telefoneLabel;
     private JLabel cpfLabel;
-    private JButton excluirButton;
-    private JButton alterarButton;
 
     //ATRIBUTO DA TABELA E DO FORMULÁRIO
-    public TabelaDeDados novaTabela;
+    //public TabelaDeDados novaTabela;
+    public TabelaDoFormulario novaTabela;
     public Usuario novoUsuario;
     public FormularioDeClientes esseFormulario = this;
 
@@ -93,7 +92,7 @@ public class FormularioDeClientes extends JFrame {
                 } else {
 
                     if(novaTabela == null)
-                        novaTabela = new TabelaDeDados(esseFormulario);
+                        novaTabela = new TabelaDoFormulario(esseFormulario);
 
                     definicaoDados();
                     novaTabela.tableModel.addRow(novoUsuario);
@@ -105,17 +104,17 @@ public class FormularioDeClientes extends JFrame {
         });
 
         //ação do botão "excluir"
-        excluirButton.addActionListener(new ActionListener() {
+        /*excluirButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(novaTabela.tabelaPrincipal.getSelectedRow() != 1) { //-1 é quando ela não está selecionada
                     novaTabela.tableModel.removeRow(novaTabela.tabelaPrincipal.getSelectedRow());
                 }
             }
-        });
+        });*/
 
         //ação do botão "alterar"
-        alterarButton.addActionListener(new ActionListener() {
+        /*alterarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -130,7 +129,7 @@ public class FormularioDeClientes extends JFrame {
                     limpaCampo();
                 }
             }
-        });
+        });*/
 
     }
 

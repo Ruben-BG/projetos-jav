@@ -1,14 +1,18 @@
 package _06FormModificado;
 
-import javax.swing.table.AbstractTableModel;
+import javax.swing.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import javax.swing.border.*;
+import javax.swing.table.*;
+
 
 public class ClientesModel extends AbstractTableModel {
     //ATRIBUTOS TABLE MODEL
     protected List<Usuario> usuarios = new ArrayList<>();
-    protected String[] colunas = {"Nome", "Email", "Endereço", "Telefone", "CPF"};
+    protected String[] colunas = {"Nome", "Email", "Endereço", "Telefone", "CPF", "Ações"};
 
     //RETORNA A QUANTIDADE DE LINHAS DO MODELO
     @Override

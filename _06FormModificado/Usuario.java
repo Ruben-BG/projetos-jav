@@ -1,5 +1,7 @@
 package _06FormModificado;
 
+import javax.swing.*;
+
 public class Usuario {//NOME DEVE SER SINGULAR, PLURAL VEM APENAS EM CLASSE DE LIST
 
     //ATRIBUTOS DO USUARIO
