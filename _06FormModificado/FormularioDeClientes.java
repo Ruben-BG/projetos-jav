@@ -92,7 +92,7 @@ public class FormularioDeClientes extends JFrame {
                 } else {
 
                     if(novaTabela == null)
-                        novaTabela = new TabelaDoFormulario(esseFormulario);
+                        novaTabela = new TabelaDoFormulario();
 
                     definicaoDados();
                     novaTabela.tableModel.addRow(novoUsuario);

@@ -1,11 +1,7 @@
 package _06FormModificado;
 
-import javax.swing.*;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.border.*;
 import javax.swing.table.*;
 
 
@@ -76,6 +72,11 @@ public class ClientesModel extends AbstractTableModel {
         this.usuarios.remove(linhaSelecionada);
         this.fireTableRowsDeleted(linhaSelecionada, linhaSelecionada); //<-função específica para deletar dados
 
+    }
+
+    @Override
+    public Class<?> getColumnClass(int coluna) {
+        return getValueAt(0, coluna).getClass();
     }
 
 }

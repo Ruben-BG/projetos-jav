@@ -2,16 +2,36 @@ package _06FormModificado;
 
 import javax.swing.*;
 import javax.swing.event.CellEditorListener;
+import javax.swing.event.ChangeEvent;
 import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.EventObject;
+import java.util.List;
 
-public class ButtonsTableEditor extends ButtonsPanel implements TableCellEditor {
+class BotoesPanel extends JPanel {
 
-    TabelaDoFormulario modeloUsado;
+    public final List<JButton> buttons = new ArrayList<>();
 
-    public ButtonsTableEditor(final JTable tabela, FormularioDeClientes formularioDeClientes) {
+    public BotoesPanel() {
+        super();
+        setOpaque(true);
+        buttons.add(new JButton("editar"));
+        buttons.add(new JButton("excluir"));
+        for(JButton b: buttons) {
+            b.setFocusable(false);
+            b.setRolloverEnabled(false);
+            add(b);
+        }
+    }
+
+}
+
+class BotoesEditor extends BotoesPanel implements TableCellEditor {
+
+    public BotoesEditor(final JTable tabela) {
 
         super();
 
@@ -30,6 +50,16 @@ public class ButtonsTableEditor extends ButtonsPanel implements TableCellEditor 
         buttons.get(0).addMouseListener(m1);
         buttons.get(1).addMouseListener(m1);
 
+        //métodos de ação para cada botão
+        buttons.get(0).addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                //tabela.getModel().
+
+            }
+        });
+
     }
 
     @Override
@@ -42,6 +72,8 @@ public class ButtonsTableEditor extends ButtonsPanel implements TableCellEditor 
     public Object getCellEditorValue() {
         return "";
     }
+
+    transient protected ChangeEvent changeEvent = null;
 
     @Override
     public boolean isCellEditable(EventObject anEvent) {
@@ -72,4 +104,23 @@ public class ButtonsTableEditor extends ButtonsPanel implements TableCellEditor 
     public void removeCellEditorListener(CellEditorListener l) {
 
     }
+
+}
+
+public class BotoesColuna extends BotoesPanel implements TableCellRenderer {
+
+    public BotoesColuna() {
+        super();
+        setName("Table.cellRenderer");
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+        setBackground(isSelected ? table.getSelectionBackground(): table.getBackground());
+
+        return this;
+
+    }
+
 }
