@@ -9,9 +9,7 @@ public class Usuario {//NOME DEVE SER SINGULAR, PLURAL VEM APENAS EM CLASSE DE L
     protected long telUsuario, cpfUsuario;
 
     //SETTERS DO USUARIO
-    public void setNomeUsuario(String nomeUsuario) {
-        this.nomeUsuario = nomeUsuario;
-    }
+    public void setNomeUsuario(String nomeUsuario) { this.nomeUsuario = nomeUsuario; }
 
     public void setEmailUsuario(String emailUsuario) {
         this.emailUsuario = emailUsuario;

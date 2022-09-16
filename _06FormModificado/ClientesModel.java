@@ -47,6 +47,7 @@ public class ClientesModel extends AbstractTableModel {
             case 2: tabelaDados.setEnderecoUsuario(valor.toString()); break;
             case 3: tabelaDados.setTelDoUsuario(Long.parseLong(valor.toString())); break;
             case 4: tabelaDados.setCpfDoUsuario(Long.parseLong(valor.toString())); break;
+            case 5: break;
             default: System.err.println("Índice da coluna inválido");
         }
         super.fireTableCellUpdated(linha, coluna);
@@ -77,6 +78,11 @@ public class ClientesModel extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int coluna) {
         return getValueAt(0, coluna).getClass();
+    }
+
+    @Override
+    public boolean isCellEditable(int rowIndex, int columnIndex) {
+        return columnIndex == 5;
     }
 
 }

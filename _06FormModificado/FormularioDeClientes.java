@@ -67,40 +67,37 @@ public class FormularioDeClientes extends JFrame {
         setVisible(true);
 
         //ação do botão "atualizar"
-        atualizarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        atualizarButton.addActionListener(e -> {
 
-                novoUsuario = new Usuario(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
-                boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
-                boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
-                boolean emailCorreto = emailTextField.getText().contains("@"); //método de verificação se tem ou não @ no campo
-                PopUp gerarAviso; //<- cria um objeto da classe gerar aviso
+            novoUsuario = new Usuario(); //<- criação de um objeto usuário, para sempre criar um objeto ao usar o método addRow
+            boolean telefoneNum = telefoneTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "telefone" é numérico
+            boolean cpfNum = cpfTextField.getText().chars().allMatch(Character::isDigit); //<- vê se o espaço "cpf" é numérico
+            boolean emailCorreto = emailTextField.getText().contains("@"); //método de verificação se tem ou não @ no campo
+            PopUp gerarAviso; //<- cria um objeto da classe gerar aviso
 
-                if(!emailCorreto) {
-                    gerarAviso = new PopUp();
-                    gerarAviso.emailIncorreto();
-                } else if(!telefoneNum && !cpfNum) {
-                    gerarAviso = new PopUp();
-                    gerarAviso.telECpfErrado();
-                } else if(!telefoneNum) { //se o campo telefone estiver com algo além de número
-                    gerarAviso = new PopUp();
-                    gerarAviso.telefoneErrado();
-                } else if(!cpfNum) {
-                    gerarAviso = new PopUp();
-                    gerarAviso.cpfErrado();
-                } else {
+            if(!emailCorreto) {
+                gerarAviso = new PopUp();
+                gerarAviso.emailIncorreto();
+            } else if(!telefoneNum && !cpfNum) {
+                gerarAviso = new PopUp();
+                gerarAviso.telECpfErrado();
+            } else if(!telefoneNum) { //se o campo telefone estiver com algo além de número
+                gerarAviso = new PopUp();
+                gerarAviso.telefoneErrado();
+            } else if(!cpfNum) {
+                gerarAviso = new PopUp();
+                gerarAviso.cpfErrado();
+            } else {
 
-                    if(novaTabela == null)
-                        novaTabela = new TabelaDoFormulario();
+                if(novaTabela == null)
+                    novaTabela = new TabelaDoFormulario(esseFormulario);
 
-                    definicaoDados();
-                    novaTabela.tableModel.addRow(novoUsuario);
-                    limpaCampo();
-
-                }
+                definicaoDados();
+                novaTabela.tableModel.addRow(novoUsuario);
+                limpaCampo();
 
             }
+
         });
 
         //ação do botão "excluir"
