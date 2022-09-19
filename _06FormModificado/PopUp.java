@@ -20,33 +20,49 @@ public class PopUp extends JFrame {
         painelAviso.add(mensagem);
 
     }
+    public void finalFrame() {
+        pack();
+        setVisible(true);
+    }
 
     //MÉTODO PARA EMAIL INCORRETO
     public void emailIncorreto() {
         mensagem.setText("Por favor insira o caractere especial '@' no campo de email");
-        pack();
-        setVisible(true);
+        finalFrame();
     }
 
     //MÉTODO PARA TELEFONE INCORRETO
     public void telefoneErrado() {
         mensagem.setText("O valor atribuído ao campo de telefone deve ser numérico.");
-        pack();
-        setVisible(true);
+        finalFrame();
     }
 
     //MÉTODO PARA CPF INCORRETO
     public void cpfErrado() {
         mensagem.setText("O valor atribuído ao campo de cpf deve ser numérico.");
-        pack();
-        setVisible(true);
+        finalFrame();
     }
 
     //MÉTODO PARA TELEFONE E CPF INCORRETOS
     public void telECpfErrado() {
         mensagem.setText("Os valores atribuídos aos campos de telefone e CPF devem ser apenas numéricos.");
-        pack();
-        setVisible(true);
+        finalFrame();
+    }
+
+    //MÉTODO PARA ALGUM ESPAÇO VAZIO
+    public void espacoVazio() {
+        mensagem.setText("Por favor preencha todos os campos");
+        finalFrame();
+    }
+
+    //MÉTODO PARA VALORES REPETIDOS
+    public void numeroRepetido() {
+        mensagem.setText("Este número já esta cadastrado, por favor adicione um novo");
+        finalFrame();
+    }
+
+    public void cpfRepetido() {
+        mensagem.setText("Este CPF já está cadastrado, por favor adicione um novo");
     }
 
 }
