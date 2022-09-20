@@ -40,11 +40,11 @@ public class Usuario {//NOME DEVE SER SINGULAR, PLURAL VEM APENAS EM CLASSE DE L
         return enderecoUsuario;
     }
 
-    public long getTelDoUsuario() {
+    public Long getTelDoUsuario() {
         return telUsuario;
     }
 
-    public long getCpfDoUsuario() {
+    public Long getCpfDoUsuario() {
         return cpfUsuario;
     }
 

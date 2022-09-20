@@ -63,6 +63,7 @@ public class PopUp extends JFrame {
 
     public void cpfRepetido() {
         mensagem.setText("Este CPF já está cadastrado, por favor adicione um novo");
+        finalFrame();
     }
 
 }

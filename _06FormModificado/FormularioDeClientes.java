@@ -1,7 +1,6 @@
 package _06FormModificado;
 
 import javax.swing.*;
-import java.util.ArrayList;
 import java.util.List;
 
 public class FormularioDeClientes extends JFrame {
@@ -102,24 +101,27 @@ public class FormularioDeClientes extends JFrame {
             gerarAviso = null;
             verificacoesPopUp();
 
-            if(novaTabela == null)
+            if(novaTabela == null && gerarAviso == null)
                 novaTabela = new TabelaDoFormulario(esseFormulario);
+            else if(novaTabela != null && gerarAviso == null) {
 
-            /*List<Usuario> listaDeDados = novaTabela.tableModel.usuarios;
-            int linha = novaTabela.tabelaPrincipal.getRowCount();
-            for(int i = 0; i < linha; i++) {
-
-                Object valorTelefone = novaTabela.tabelaPrincipal.getValueAt(i, 3), valorCpf = novaTabela.tabelaPrincipal.getValueAt(i, 4);
-                if (listaDeDados.contains(telefoneTextField.getText())) {
-                    gerarAviso = new PopUp();
-                    gerarAviso.numeroRepetido();
-                    break;
-                } else if (listaDeDados.contains(valorCpf)) {
-                    gerarAviso = new PopUp();
-                    gerarAviso.cpfRepetido();
-                    break;
+                List<Usuario> listaDeDados = novaTabela.tableModel.usuarios;
+                int quantidadeLinha = novaTabela.tabelaPrincipal.getRowCount(), linhaEscolhida = 0;
+                while (linhaEscolhida < quantidadeLinha) {
+                    if (listaDeDados.get(linhaEscolhida).getTelDoUsuario() == Long.parseLong(telefoneTextField.getText())) {
+                        gerarAviso = new PopUp();
+                        gerarAviso.numeroRepetido();
+                        break;
+                    } else if (listaDeDados.get(linhaEscolhida).getCpfDoUsuario() == Long.parseLong(cpfTextField.getText())) {
+                        gerarAviso = new PopUp();
+                        gerarAviso.cpfRepetido();
+                        break;
+                    } else {
+                        linhaEscolhida++;
+                    }
                 }
-            }*/
+
+            }
 
             if(gerarAviso == null) {
 
