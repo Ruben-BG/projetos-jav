@@ -13,13 +13,14 @@ public class BotoesEditor extends AbstractCellEditor implements TableCellEditor 
 
         class EditandoManipuladorDeParada extends MouseAdapter implements ActionListener {
             protected JTable tabela;
+            protected BotoesPanel referenciaBotoesPanel = new BotoesPanel();
 
             @Override
             public void mouseClicked(MouseEvent e) {
                 Object o = e.getSource(); //método getSource retorna uma referência ao Component que gerou o evento (nesse caso um JButton)
                 if(o instanceof TableCellEditor) {//instanceof é um operador que permite testar se um objeto é uma instância de um tipo específico de uma class
-                    actionPerformed(new ActionEvent(o, ActionEvent.ACTION_PERFORMED, ""));/*ActionPerformed é utilizado para tratar qualquer evento que um usuário possa realizar, como clicar em um botão
-                                                       ActionEvent (objeto) é o evento que ocorre quando um botão é clicado*/
+                    actionPerformed(new ActionEvent(o, ActionEvent.ACTION_PERFORMED, ""));//ActionPerformed é utilizado para tratar qualquer evento que um usuário possa realizar, como clicar em um botão
+                                                       //ActionEvent (objeto) é o evento que ocorre quando um botão é clicado
                 } else if(o instanceof JButton) {
                     ButtonModel m = ((JButton) e.getComponent()).getModel();
                     if(m.isPressed() && e.isControlDown()){
@@ -50,7 +51,7 @@ public class BotoesEditor extends AbstractCellEditor implements TableCellEditor 
         });
 
         lista.get(1).addActionListener(e -> {
-            referenciaModel.removeRow(referenciaForm.esseFormulario.novaTabela.tabelaPrincipal.getSelectedRow());
+            referenciaModel.removeRow(tabela.getSelectedRow());
         });
 
         EditandoManipuladorDeParada manipulador = new EditandoManipuladorDeParada();

@@ -39,14 +39,14 @@ public class ClientesModel extends AbstractTableModel {
     @Override
     public void setValueAt(Object valor, int linha, int coluna) {
 
-        Usuario tabelaDados = usuarios.get(linha);
+        //Usuario tabelaDados = this.usuarios.get(linha);
 
         switch (coluna) {
-            case 0: tabelaDados.setNomeUsuario(valor.toString()); break;
-            case 1: tabelaDados.setEmailUsuario(valor.toString()); break;
-            case 2: tabelaDados.setEnderecoUsuario(valor.toString()); break;
-            case 3: tabelaDados.setTelDoUsuario(Long.parseLong(valor.toString())); break;
-            case 4: tabelaDados.setCpfDoUsuario(Long.parseLong(valor.toString())); break;
+            case 0: usuarios.get(linha).setNomeUsuario(valor.toString()); break;
+            case 1: usuarios.get(linha).setEmailUsuario(valor.toString()); break;
+            case 2: usuarios.get(linha).setEnderecoUsuario(valor.toString()); break;
+            case 3: usuarios.get(linha).setTelDoUsuario(Long.parseLong(valor.toString())); break;
+            case 4: usuarios.get(linha).setCpfDoUsuario(Long.parseLong(valor.toString())); break;
             case 5: break;
             default: System.err.println("Índice da coluna inválido");
         }
