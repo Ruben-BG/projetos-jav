@@ -138,6 +138,27 @@ public class FormularioDeClientes extends JFrame {
 
             gerarAviso = null;
             verificacoesPopUp();
+
+            if(gerarAviso == null) {
+
+                List<Usuario> listaDeDados = novaTabela.tableModel.usuarios;
+                int quantidadeLinha = novaTabela.tabelaPrincipal.getRowCount(), linhaEscolhida = 0;
+                while (linhaEscolhida < quantidadeLinha) {
+                    if (listaDeDados.get(linhaEscolhida).getTelDoUsuario() == Long.parseLong(telefoneTextField.getText()) && linhaEscolhida != novaTabela.tabelaPrincipal.getSelectedRow()) {
+                        gerarAviso = new PopUp();
+                        gerarAviso.numeroRepetido();
+                        break;
+                    } else if (listaDeDados.get(linhaEscolhida).getCpfDoUsuario() == Long.parseLong(cpfTextField.getText()) && linhaEscolhida != novaTabela.tabelaPrincipal.getSelectedRow()) {
+                        gerarAviso = new PopUp();
+                        gerarAviso.cpfRepetido();
+                        break;
+                    } else {
+                        linhaEscolhida++;
+                    }
+                }
+
+            }
+
             if(novaTabela.tabelaPrincipal.getSelectedRow() != -1 && gerarAviso == null) {
 
                 int linhaSelecionada = novaTabela.tabelaPrincipal.getSelectedRow();
@@ -145,8 +166,8 @@ public class FormularioDeClientes extends JFrame {
                 novaTabela.tableModel.setValueAt(nomeTextField.getText(), linhaSelecionada, 0);
                 novaTabela.tableModel.setValueAt(emailTextField.getText(), linhaSelecionada, 1);
                 novaTabela.tableModel.setValueAt(enderecoTextField.getText(), linhaSelecionada, 2);
-                novaTabela.tableModel.setValueAt(cpfTextField.getText(), linhaSelecionada, 3);
-                novaTabela.tableModel.setValueAt(telefoneTextField.getText(), linhaSelecionada, 4);
+                novaTabela.tableModel.setValueAt(telefoneTextField.getText(), linhaSelecionada, 3);
+                novaTabela.tableModel.setValueAt(cpfTextField.getText(), linhaSelecionada, 4);
                 limpaCampo();
                 salvarButton.setVisible(true);
                 atualizarButton.setVisible(false);
